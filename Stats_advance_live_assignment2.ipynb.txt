@@ -1,0 +1,296 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": [
+        "1. Explain the properties of the F-distribution"
+      ],
+      "metadata": {
+        "id": "MauHG6cHhpnX"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "The F-distribution is defined as the ratio of two independent chi-squared distributed random variables, each divided by their respective degrees of freedom. Specifically if x and y are independent random variables with chi-squared distributions with d1 and d2 degrees of freedom.\n",
+        "The F-distribution is right-skewed, meaning it has a longer tail on the right side. As the degrees of freedom increase, the distribution becomes more symmetric\n",
+        "The F-distribution is related to other distributions, such as the chi-squared and gamma distributions. Specifically, the F-distribution can be derived from the ratio of chi-squared distributions."
+      ],
+      "metadata": {
+        "id": "7FpF5YnIiN4-"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "2.  In which types of statistical tests is the F-distribution used, and why is it appropriate for these tests?"
+      ],
+      "metadata": {
+        "id": "3bpF_plljQAd"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "The F-distribution is primarily used in several types of statistical tests, particularly those that involve comparisons of variances or means across multiple groups. Here are the main contexts in which it is used:-\n",
+        "\n",
+        "1. ANOVA tests whether there are statistically significant differences between the means of three or more groups. The F-distribution is used to determine the ratio of the variance between the group means to the variance within the groups. If the null hypothesis is true (i.e., all group means are equal), the F-statistic follows an F-distribution\n",
+        "\n",
+        "2. In multiple regression, the F-test is used to assess the overall significance of the model. It compares the variance explained by the model to the unexplained variance, helping to determine if the predictors have a statistically significant effect on the response variable.\n",
+        "\n",
+        "3. The F-test can also be used to compare the variances of two independent samples. If the variances are equal, the ratio of the two sample variances follows an F-distribution.\n",
+        "\n",
+        "Why the F-Distribution is Appropriate:\n",
+        "\n",
+        "The F-distribution arises from the ratio of two independent chi-squared distributions divided by their degrees of freedom. This property makes it suitable for tests that involve variance comparisons\n",
+        "\n",
+        "The F-distribution assumes that the underlying data are normally distributed. This is relevant for ANOVA and regression, where the residuals should ideally meet this assumption.\n",
+        "\n",
+        "The F-distribution is always non-negative (i.e., it ranges from 0 to positive infinity), which is appropriate since variances cannot be negative"
+      ],
+      "metadata": {
+        "id": "dRAMkw8ijoN5"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "3.  What are the key assumptions required for conducting an F-test to compare the variances of two\n",
+        "populations?"
+      ],
+      "metadata": {
+        "id": "pZ6cb_QjkZ5s"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Independence: The two samples should be independent of each other. This means that the selection or value of one sample does not influence the other\n",
+        "Normality: The populations from which the samples are drawn should be normally distributed. While the F-test is somewhat robust to deviations from normality, severe departures can affect the test's validity\n",
+        "Homogeneity of Variances: The F-test assumes that the two populations have equal variances (this is the null hypothesis). If this assumption is violated, the results of the test may not be reliable\n",
+        "Continuous Data: The data should be continuous. The F-test is not appropriate for categorical data\n",
+        "Random Sampling: The samples should be randomly selected from their respective populations to avoid bias in the results"
+      ],
+      "metadata": {
+        "id": "c-GDMYMnkk8d"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "4. What is the purpose of ANOVA, and how does it differ from a t-test?"
+      ],
+      "metadata": {
+        "id": "hox2QytTkv1U"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "ANOVA (Analysis of Variance) is used to determine whether there are statistically significant differences between the means of three or more groups. Its primary purpose is to assess the impact of one or more independent variables (factors) on a dependent variable. ANOVA helps researchers understand if at least one group mean is different from the others, providing insight into the relationship between factors and outcomes\n",
+        "\n",
+        "ANOVA is designed for comparing three or more groups, while a t-test is only suitable for comparing two groups.\n",
+        "\n",
+        "When you need to see if there are significant differences between multiple treatment conditions or categories, use ANOVA. If you only need to compare two groups, use a t-test.\n",
+        "\n",
+        "A significant ANOVA result indicates that at least one group mean is significantly different from the others, but further analysis (post-hoc tests) is needed to identify which specific groups differ."
+      ],
+      "metadata": {
+        "id": "7Qi1fAiqldse"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "5. Explain when and why you would use a one-way ANOVA instead of multiple t-tests when comparing more than two groups"
+      ],
+      "metadata": {
+        "id": "RLunBe6Klxfa"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "You should use a one-way ANOVA instead of multiple t-tests when comparing more than two groups because ANOVA controls for the overall Type I error rate, meaning it reduces the chance of falsely finding a significant difference when performing multiple comparisons, whereas conducting multiple t-tests separately increases the likelihood of this error occurring\n",
+        "\n",
+        "ANOVA provides a single test statistic to evaluate the differences across all groups, whereas conducting multiple t-tests requires separate analyses for each pair of groups, which can be time-consuming and less efficient"
+      ],
+      "metadata": {
+        "id": "l_mDpW4ImClI"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "6.  Explain how variance is partitioned in ANOVA into between-group variance and within-group variance.\n",
+        "How does this partitioning contribute to the calculation of the F-statistic?"
+      ],
+      "metadata": {
+        "id": "WSs6ml3emL0C"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "In ANOVA, variance is partitioned into \"between-group variance\" which represents the variability between different groups being compared, and \"within-group variance\" which represents the variability within each individual group; by calculating the ratio of these two variances (the F-statistic), ANOVA determines whether there is a statistically significant difference between the group means, essentially assessing if the observed variations between groups are larger than the expected variations within groups.\n",
+        "\n",
+        "This measures how much the means of different groups differ from the overall mean of all data points\n",
+        "\n",
+        "This measures the variability of data points within each individual group, essentially how spread out the data is within each group\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "QK6BO7nPmSLN"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "7. Compare the classical (frequentist) approach to ANOVA with the Bayesian approach. What are the key\n",
+        "differences in terms of how they handle uncertainty, parameter estimation, and hypothesis testing?"
+      ],
+      "metadata": {
+        "id": "qWB8-QYnmqas"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "The key difference between the classical (frequentist) and Bayesian approaches to ANOVA lies in how they interpret probability and handle uncertainty: while frequentist methods treat parameters as fixed values and focus on the probability of observing data given a hypothesis, Bayesian methods consider parameters as random variables and incorporate prior knowledge to update beliefs about those parameters based on observed data, resulting in a more nuanced understanding of uncertainty; this is reflected in how they estimate parameters and conduct hypothesis testing.\n",
+        "\n",
+        "Probability is interpreted as the long-run frequency of an event in repeated experiments, meaning the probability of a parameter value is not directly interpretable as a degree of belief.\n",
+        "\n",
+        "Probability represents a degree of belief about a parameter value, allowing for the incorporation of prior knowledge through a \"prior distribution\" that is updated with new data to generate a \"posterior distribution\".\n",
+        "\n",
+        "Parameter estimates are single values (e.g., sample mean) with confidence intervals to quantify uncertainty, based on the idea that repeated sampling would produce a distribution around the true value\n",
+        "\n",
+        "Parameter estimates are represented as probability distributions (posterior distributions) which directly quantify the uncertainty around the parameter value, incorporating both prior beliefs and observed data"
+      ],
+      "metadata": {
+        "id": "jaJnjsCsmzUX"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "8. Question: You have two sets of data representing the incomes of two different professions1\n",
+        " Profession A: [48, 52, 55, 60, 62]\n",
+        "\n",
+        " Profession B: [45, 50, 55, 52, 47]\n",
+        "Perform an F-test to determine if the variances of the two professions'\n",
+        "incomes are equal. What are your conclusions based on the F-test?\n",
+        "\n",
+        "Task: Use Python to calculate the F-statistic and p-value for the given data.\n",
+        "\n",
+        "Objective: Gain experience in performing F-tests and interpreting the results in terms of variance comparison"
+      ],
+      "metadata": {
+        "id": "Z4Pmz5DdnGGk"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Q_gsuJdmhkdn",
+        "outputId": "a3a68ee3-5e6f-4e1a-fed0-ffc5a470f164"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "F-statistic: 2.089171974522293\n",
+            "p-value: 0.24652429950266952\n"
+          ]
+        }
+      ],
+      "source": [
+        "import numpy as np\n",
+        "from scipy.stats import f\n",
+        "\n",
+        "profession_A = np.array([48, 52, 55, 60, 62])\n",
+        "profession_B = np.array([45, 50, 55, 52, 47])\n",
+        "\n",
+        "var_A = np.var(profession_A, ddof=1)\n",
+        "var_B = np.var(profession_B, ddof=1)\n",
+        "\n",
+        "F_statistic = var_A / var_B\n",
+        "\n",
+        "df_A = len(profession_A) - 1\n",
+        "df_B = len(profession_B) - 1\n",
+        "\n",
+        "p_value = 1 - f.cdf(F_statistic, df_A, df_B)\n",
+        "\n",
+        "print(f\"F-statistic: {F_statistic}\")\n",
+        "print(f\"p-value: {p_value}\")"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "9.  Question: Conduct a one-way ANOVA to test whether there are any statistically significant differences in\n",
+        "average heights between three different regions with the following data1\n",
+        " Region A: [160, 162, 165, 158, 164]\n",
+        " Region B: [172, 175, 170, 168, 174]\n",
+        " Region C: [180, 182, 179, 185, 183]\n",
+        " Task: Write Python code to perform the one-way ANOVA and interpret the results\n",
+        " Objective: Learn how to perform one-way ANOVA using Python and interpret F-statistic and p-value."
+      ],
+      "metadata": {
+        "id": "Gj3FS7MInzwu"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import numpy as np\n",
+        "from scipy import stats\n",
+        "\n",
+        "region_A = np.array([160, 162, 165, 158, 164])\n",
+        "region_B = np.array([172, 175, 170, 168, 174])\n",
+        "region_C = np.array([180, 182, 179, 185, 183])\n",
+        "\n",
+        "F_statistic, p_value = stats.f_oneway(region_A, region_B, region_C)\n",
+        "\n",
+        "print(f\"F-statistic: {F_statistic}\")\n",
+        "print(f\"p-value: {p_value}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "T_kC6xPNoNuf",
+        "outputId": "b311607a-37bb-4748-ccf9-395591bdd30e"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "F-statistic: 67.87330316742101\n",
+            "p-value: 2.870664187937026e-07\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
